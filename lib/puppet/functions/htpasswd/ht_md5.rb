@@ -10,7 +10,7 @@ require 'stringio'
 
     # from https://github.com/copiousfreetime/htauth/blob/master/lib/htauth/algorithm.rb
     # this is not the Base64 encoding, this is the to64() method from apr
-    SALT_CHARS = (%w[ . / ] + ("0".."9").to_a + ('A'..'Z').to_a + ('a'..'z').to_a).freeze
+    SALT_CHARS = (%w[ . / ] + ("0".."9").to_a + ('A'..'Z').to_a + ('a'..'z').to_a).freeze unless defined? SALT_CHARS
     def to_64(number, rounds)
       r = StringIO.new
       rounds.times do |x|
@@ -21,7 +21,7 @@ require 'stringio'
     end
 
     # from https://github.com/copiousfreetime/htauth/blob/master/lib/htauth/md5.rb
-    DIGEST_LENGTH = 16
+    DIGEST_LENGTH = 16 unless defined? DIGEST_LENGTH
     def ht_md5(password, salt)
       prefix = '$apr1$'
 
