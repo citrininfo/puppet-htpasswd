@@ -10,19 +10,17 @@ Currently included are:
 - md5
 - sha1
 
-The Apache Module currently uses sha1 Quote:
-> ### apache::pw_hash
-> Currently uses SHA-hashes, because although this format is considered insecure, it's the most secure format supported by the most platforms.
->
-> https://forge.puppet.com/puppetlabs/apache/reference#apachepw_hash
+The Apache Module currently uses sha1:
+```
+apache::pw_hash
+  Currently uses SHA-hashes, because although this format is considered insecure, it's the most secure format supported by the most platforms.
+   https://forge.puppet.com/puppetlabs/apache/reference#apachepw_hash
+```
 
 This module currently does not manage the owner/group/mode of the htpasswd and
 htgroup files you specify.
 
 Module is a Fork of https://github.com/leinaddm/puppet-htpasswd.
-
-## Compatibility
-Puppet >= v5.0
 
 ## htpasswd type
 
