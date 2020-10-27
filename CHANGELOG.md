@@ -2,10 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## Release 0.0.3
+## Release 1.0.0
 
 **Features**
+- Updated Module to work with Puppet 6
+- Updated Module to PDK 1.18
+- Rewritten Tests to puppet-rspec 2.7.x
+- Namespaced Functions for clarity
 
-**Bugfixes**
+If you migrate from `leinaddm/puppet-htpasswd v0.0.3` change your function calls in your manifests as follows:
+- ht_md5() => htpasswd::ht_md5()
+- ht_crypt() => htpasswd::ht_crypt()
+- ht_sha1() => htpasswd::ht_sha1()
 
-**Known Issues**
+## Release 0.0.3 and before
+
+Cloned Module of https://github.com/leinaddm/puppet-htpasswd

@@ -3,12 +3,18 @@ Puppet module to manage htpasswd and htgroup files.
 
 Made for Users who need to be a bit more Flexible than the Apache module allows.
 
-Adds Functions to generate Passwords for htpasswd files with different methods.
+Adds Functions to generate Passwords for htpasswd file-line with different methods.
 Currently included are:
 
 - crypt
 - md5
 - sha1
+
+The Apache Module currently uses sha1 Quote:
+> ### apache::pw_hash
+> Currently uses SHA-hashes, because although this format is considered insecure, it's the most secure format supported by the most platforms.
+>
+> https://forge.puppet.com/puppetlabs/apache/reference#apachepw_hash
 
 This module currently does not manage the owner/group/mode of the htpasswd and
 htgroup files you specify.
@@ -16,7 +22,7 @@ htgroup files you specify.
 Module is a Fork of https://github.com/leinaddm/puppet-htpasswd.
 
 ## Compatibility
-Puppet < v6.0
+Puppet >= v5.0
 
 ## htpasswd type
 
@@ -60,13 +66,13 @@ Puppet < v6.0
 
 ## helper parser functions
 
-### ht_crypt('password', 'salt')
+### htpasswd::ht_crypt('password', 'salt')
 encrypt 'password' with 'salt' using the crypt method
 
-### ht_md5('password', 'salt')
+### htpasswd::ht_md5('password', 'salt')
 encrypt 'password' with 'salt' using the apache MD5 method
 
-### ht_sha1('password')
+### htpasswd::ht_sha1('password')
 encrypt 'password' using the apache SHA1 method
 
 # Credits
