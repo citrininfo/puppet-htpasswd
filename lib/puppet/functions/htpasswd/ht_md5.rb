@@ -1,18 +1,12 @@
 require 'digest/md5'
 require 'stringio'
 
-Puppet::Parser::Functions::newfunction(:ht_md5, :type => :rvalue, :doc => <<-EOS
-      encrypt a password using apache md5 algorithm. The first argument is the password and the second one the salt to use
-    EOS
-  ) do |args|
-    raise(Puppet::ParseError, "ht_md5(): Wrong number of arguments " +
-      "given (#{args.size} for 2)") if args.size != 2
-
-    value = args[0]
-    salt = args[1]
-
-    raise(Puppet::ParseError, 'ht_md5(): Requires a string to work with') unless value.class == String
-    raise(Puppet::ParseError, 'ht_md5(): Requires a string to work with') unless salt.class == String
+  Puppet::Functions.create_function(:'htpasswd::ht_md5') do
+    dispatch :ht_md5 do
+      param 'String', :password
+      param 'String', :salt
+      return_type 'String'
+    end
 
     # from https://github.com/copiousfreetime/htauth/blob/master/lib/htauth/algorithm.rb
     # this is not the Base64 encoding, this is the to64() method from apr
@@ -28,7 +22,7 @@ Puppet::Parser::Functions::newfunction(:ht_md5, :type => :rvalue, :doc => <<-EOS
 
     # from https://github.com/copiousfreetime/htauth/blob/master/lib/htauth/md5.rb
     DIGEST_LENGTH = 16
-    def encode(password, salt)
+    def ht_md5(password, salt)
       prefix = '$apr1$'
 
       primary = ::Digest::MD5.new
@@ -90,6 +84,4 @@ Puppet::Parser::Functions::newfunction(:ht_md5, :type => :rvalue, :doc => <<-EOS
 
       return encoded_password
     end
-
-    encode(value, salt)
   end
