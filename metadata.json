@@ -1,17 +1,67 @@
 {
+  "name": "citrin-htpasswd",
+  "version": "0.0.3",
+  "author": "Patrick Jan Kiefer",
+  "summary": "Puppet module to manage htpasswd and htgroup files. Based upon https://github.com/leinaddm/puppet-htpasswd",
+  "license": "Apache-2.0",
+  "source": "git://github.com/citrininfo/puppet-htpasswd",
+  "project_page": "https://github.com/citrininfo/puppet-htpasswd",
+  "dependencies": [
+
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "9",
+        "10"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "18.04"
+      ]
+    },
+    {
+      "operatingsystem": "windows",
+      "operatingsystemrelease": [
+        "2019",
+        "10"
+      ]
+    }
+  ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": "3.x"
+      "version_requirement": "5.x"
     }
   ],
-  "name": "leinaddm-htpasswd",
-  "version": "0.0.3",
-  "source": "git://github.com/leinaddm/puppet-htpasswd",
-  "author": "Daniel De Marco",
-  "license": "Apache Version 2.0",
-  "summary": "htpasswd module",
-  "description": "Puppet module to manage htpasswd and htgroup files",
-  "project_page": "https://github.com/leinaddm/puppet-htpasswd",
-  "dependencies": []
+  "pdk-version": "1.18.1",
+  "template-url": "pdk-default#1.18.1",
+  "template-ref": "tags/1.18.1-0-g3d2e75c"
 }

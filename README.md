@@ -1,23 +1,22 @@
 # htpasswd
 Puppet module to manage htpasswd and htgroup files.
 
-This module has the ability to manage users with the same username in
-multiple files. To be able to do this it uses the same approach that the
-builtin cron type uses with cronjobs: a marker comment before the
-managed entry. This means that you can not use this module to manage or
-remove existing entries in htpasswd files. If you need to manage exiting
-entries you can use https://github.com/benwtr/puppet-htpasswd , but your
-usernames will have to be unique across all managed htpasswd files on
-the same host.
+Made for Users who need to be a bit more Flexible than the Apache module allows.
 
-This module does not manage the owner/group/mode of the htpasswd and
-htgroup files you specify. You have to use a separate `file` resource
-for that (see
-[here](https://github.com/leinaddm/puppet-htpasswd/issues/1#issuecomment-23632979)
-for an explanation).
+Adds Functions to generate Passwords for htpasswd files with different methods.
+Currently included are:
+
+- crypt
+- md5
+- sha1
+
+This module currently does not manage the owner/group/mode of the htpasswd and
+htgroup files you specify.
+
+Module is a Fork of https://github.com/leinaddm/puppet-htpasswd.
 
 ## Compatibility
-Puppet v3.x with Ruby v1.8.7, v1.9.3, v2.0.0
+Puppet < v6.0
 
 ## htpasswd type
 
@@ -71,4 +70,5 @@ encrypt 'password' with 'salt' using the apache MD5 method
 encrypt 'password' using the apache SHA1 method
 
 # Credits
-Apache MD5 algorithm ruby implementation taken from https://github.com/copiousfreetime/htauth by Jeremy Hinegardner.
+- Module is a Fork of https://github.com/leinaddm/puppet-htpasswd 
+- Apache MD5 algorithm ruby implementation taken from https://github.com/copiousfreetime/htauth by Jeremy Hinegardner.
