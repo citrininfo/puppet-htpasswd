@@ -1,26 +1,19 @@
 require 'spec_helper'
 
-describe "the ht_crypt function" do
+describe "htpasswd::ht_crypt" do
   let(:scope) { PuppetlabsSpec::PuppetInternals.scope }
 
-  it "should exist" do
-    Puppet::Parser::Functions.function("ht_crypt").should == "function_ht_crypt"
-  end
+  it { is_expected.to run.with_params('password','salt') }
 
-  it "should raise a ParseError if there is less than 2 argument" do
-    lambda { scope.function_ht_crypt(['test']) }.should( raise_error(Puppet::ParseError))
-  end
+  it { is_expected.to run.with_params('missingArgument').and_raise_error(ArgumentError) }
 
-  it "should raise a ParseError if there is more than 2 arguments" do
-    lambda { scope.function_ht_crypt(['foo', 'bar', 'ff']) }.should( raise_error(Puppet::ParseError))
-  end
+  it { is_expected.to run.with_params('to','many','arguments').and_raise_error(ArgumentError) }
 
-  it "should raise a ParseError if passed not a string" do
-    lambda { scope.function_ht_crypt([42, 'str']) }.should( raise_error(Puppet::ParseError))
+  it "should raise a ArgumentError if passed not a string" do
+    is_expected.to run.with_params(24,'wrong_type').and_raise_error(ArgumentError)
   end
 
   it "should return a Crypt password" do
-    result = scope.function_ht_crypt(['testpassword', '46'])
-    result.should(eq('46ursI0BCy7gc'))
+    is_expected.to run.with_params('testpassword', '46').and_return('46ursI0BCy7gc')
   end
 end
