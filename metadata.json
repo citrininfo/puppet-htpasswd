@@ -6,6 +6,7 @@
   "license": "Apache-2.0",
   "source": "git://github.com/citrininfo/puppet-htpasswd",
   "project_page": "https://github.com/citrininfo/puppet-htpasswd",
+  "issues_url": "https://github.com/citrininfo/puppet-htpasswd",
   "dependencies": [
 
   ],
@@ -40,7 +41,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": "5.x"
+      "version_requirement": ">=5.x"
     }
   ],
   "pdk-version": "1.18.1",
