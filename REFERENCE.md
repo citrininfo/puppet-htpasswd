@@ -1,13 +1,13 @@
 ## Reference
 
 ### Defined Types
-*[`htpasswd`](#htpasswd): Adds User&Password to given File
-*[`htgroup`](#htgroup): Adds Usergroups to given File
+* [`htpasswd`](#htpasswd): Adds User&Password to given File
+* [`htgroup`](#htgroup): Adds Usergroups to given File
 
 ### Functions
-*[`htpasswd::ht_crypt`](#htpasswdht_crypt)
-*[`htpasswd::ht_md5`](#htpasswdht_md5)
-*[`htpasswd::ht_sha1`](#htpasswdht_sha1)
+* [`htpasswd::ht_crypt`](#htpasswdht_crypt)
+* [`htpasswd::ht_md5`](#htpasswdht_md5)
+* [`htpasswd::ht_sha1`](#htpasswdht_sha1)
 
 ### htpasswd
 Manage User in given htpasswd file
