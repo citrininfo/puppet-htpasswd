@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.0.1
+
+**Fixes**
+- corrected puppet version requirement in metadata
+
+**Changes**
+
+- change readme.md to be more readable on puppetforge
+- Move References to REFERENCE.md
+- add usage example for random passwords to README.md
+
 ## Release 1.0.0
 
 **Features**

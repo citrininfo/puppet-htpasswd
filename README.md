@@ -11,42 +11,39 @@ Currently included are:
 - sha1
 
 The Apache Module currently uses sha1:
-```
-apache::pw_hash
-  Currently uses SHA-hashes, because although this format is considered insecure, it's the most secure format supported by the most platforms.
-   https://forge.puppet.com/puppetlabs/apache/reference#apachepw_hash
-```
+
+    apache::pw_hash
+      Currently uses SHA-hashes, because although this format is considered insecure, it's the most secure format supported by the most platforms.
+      https://forge.puppet.com/puppetlabs/apache/reference#apachepw_hash
+
 
 This module currently does not manage the owner/group/mode of the htpasswd and
 htgroup files you specify.
 
 Module is a Fork of https://github.com/leinaddm/puppet-htpasswd.
 
-## htpasswd type
+### tldr
+Module does not manage existence of htpasswd file. You need to add this yourself
 
-### add a user
-
+#### add a user
     htpasswd { 'dan':
       cryptpasswd => 'MrC7Aq3qPKPaK',  # encrypted password
       target      => '/etc/httpd/conf/htpasswd',
     }
 
-### add a second user with the same username to a different file
-
+#### add a second user with the same username to a different file
     htpasswd { 'dan2':
       username    => 'dan',
-      cryptpasswd => 'djkhfsdhfkjsd',  # encrypted password
+      cryptpasswd => $password,  # encrypted password
       target      => '/etc/httpd/conf/htpasswd2',
     }
 
-### remove a user
+#### remove a user
 
     htpasswd { user:
       ensure => absent,
       target => '/etc/httpd/conf/htpasswd',
     }
-
-## htgroup type
 
 #### add a group
 
@@ -62,16 +59,30 @@ Module is a Fork of https://github.com/leinaddm/puppet-htpasswd.
       target => '/etc/httpd/conf/htgroup',
     }
 
-## helper parser functions
+#### Generate Random Password and export as file somewhere
+Here is an example how you can use the module to generate random passwords based on host and user and export the password to somewhere; like a users workstation.
 
-### htpasswd::ht_crypt('password', 'salt')
-encrypt 'password' with 'salt' using the crypt method
+    $user = 'username'
+    $htpasswd_charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@!'
+    $password = htpasswd::ht_md5(
+      fqdn_rand_string('32', $htpasswd_charset, $user),
+      fqdn_rand_string('8', $htpasswd_charset, "${user}_salt")
+    )
 
-### htpasswd::ht_md5('password', 'salt')
-encrypt 'password' with 'salt' using the apache MD5 method
+    @@file {$facts['fqdn']:
+      ensure  => present,
+      content => $password,
+      user    => $user,
+      group   => $user,
+      mode    => '0600',
+      tag     => 'sometag',
+    }
 
-### htpasswd::ht_sha1('password')
-encrypt 'password' using the apache SHA1 method
+    htpasswd { $user:
+      ensure => present,
+      cryptpassword => $password,
+      target => '/path/to/htpasswd'
+    }
 
 # Credits
 - Module is a Fork of https://github.com/leinaddm/puppet-htpasswd 
