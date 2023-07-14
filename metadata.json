@@ -4,7 +4,7 @@
   "author": "Patrick Jan Kiefer",
   "summary": "Puppet module to manage htpasswd and htgroup files. Based upon https://github.com/leinaddm/puppet-htpasswd",
   "license": "Apache-2.0",
-  "source": "git://github.com/citrininfo/puppet-htpasswd",
+  "source": "https://github.com/citrininfo/puppet-htpasswd",
   "project_page": "https://github.com/citrininfo/puppet-htpasswd",
   "issues_url": "https://github.com/citrininfo/puppet-htpasswd",
   "dependencies": [
