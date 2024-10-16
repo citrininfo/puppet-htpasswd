@@ -80,7 +80,7 @@ Here is an example how you can use the module to generate random passwords based
 
     htpasswd { $user:
       ensure => present,
-      cryptpassword => $password,
+      cryptpasswd => $password,
       target => '/path/to/htpasswd'
     }
 

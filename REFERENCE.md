@@ -13,7 +13,7 @@
 Manage User in given htpasswd file
 
 #### parameters
-##### cryptpassword
+##### cryptpasswd
 Data Type: `String`
 
 ##### target
